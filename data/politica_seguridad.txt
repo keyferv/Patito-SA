@@ -1,0 +1,32 @@
+PATITO S.A.
+POLÍTICAS DE SEGURIDAD, CONTRASEÑAS Y ACCESOS
+(Documento ficticio para fines de evaluación del semillero)
+Base de conocimiento del Agente de Seguridad y Accesos
+
+1. CONTRASEÑAS
+- Mínimo 12 caracteres con mayúsculas, minúsculas, números y símbolos.
+- No reutilizar contraseñas ni compartirlas.
+- Cambio obligatorio ante sospecha de compromiso.
+
+2. AUTENTICACIÓN MULTIFACTOR (MFA)
+Obligatoria para correo, VPN y sistemas críticos.
+
+3. GESTIÓN DE ACCESOS
+- Principio de mínimo privilegio: cada persona accede solo a lo necesario para su función.
+- Los accesos se solicitan por ticket y los aprueba el dueño del sistema.
+- Los accesos se revocan al cambiar de rol o al desvincularse.
+
+4. MANEJO DE CREDENCIALES (REGLA CRÍTICA)
+- Está PROHIBIDO almacenar credenciales (usuarios y contraseñas) en hojas de cálculo,
+  documentos compartidos, correos, notas o texto plano.
+- Las credenciales deben guardarse únicamente en el gestor de contraseñas corporativo (bóveda
+  autorizada por TI).
+- No compartir credenciales entre personas; cada acceso es personal e intransferible.
+
+5. CLASIFICACIÓN DE LA INFORMACIÓN
+Pública, interna, confidencial y restringida. La información confidencial y restringida no
+debe enviarse por canales no autorizados.
+
+6. USO ACEPTABLE Y VPN
+El acceso remoto a sistemas internos se realiza solo mediante la VPN corporativa. El uso de
+los recursos es para fines laborales.

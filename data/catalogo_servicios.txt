@@ -1,0 +1,33 @@
+PATITO S.A.
+CATÁLOGO DE SERVICIOS Y SOLICITUDES DE TI
+(Documento ficticio para fines de evaluación del semillero)
+Base de conocimiento del Agente de Infraestructura y Servicios
+
+1. SERVICIOS DE TI DISPONIBLES
+- Soporte de equipos (laptops, escritorio, periféricos).
+- Cuentas de correo y acceso a sistemas internos.
+- Instalación de software autorizado.
+- Conectividad y VPN.
+- Respaldo y restauración de archivos corporativos.
+
+2. CANAL DE SOLICITUDES
+Todas las solicitudes se realizan mediante un ticket en la Mesa de Servicio (portal interno
+"PatitoDesk"). No se atienden solicitudes por chat personal o de palabra.
+
+3. SOLICITUD DE INSTALACIÓN DE SOFTWARE NUEVO
+3.1 El colaborador crea un ticket en PatitoDesk indicando el software, la versión y el motivo.
+3.2 El jefe directo aprueba la solicitud dentro del ticket.
+3.3 TI valida que el software esté en la lista de software autorizado y revise licencias y
+    requisitos de seguridad.
+3.4 Si no está en la lista autorizada, TI evalúa el caso (seguridad y licenciamiento) antes
+    de aprobarlo.
+3.5 La instalación la realiza exclusivamente el equipo de TI. Está prohibido que el usuario
+    instale software por su cuenta o descargue programas de fuentes no oficiales.
+
+4. SOLICITUD DE HARDWARE
+Requiere ticket, justificación y aprobación del jefe de área. Los tiempos de entrega dependen
+de inventario.
+
+5. HORARIOS DE ATENCIÓN
+Mesa de Servicio: lunes a viernes de 8:00 a 18:00. Incidentes críticos (P1): 24/7 por la
+línea de emergencia.

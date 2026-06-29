@@ -1,0 +1,30 @@
+PATITO S.A.
+PROCEDIMIENTO DE GESTIÓN DE INCIDENTES Y SLA
+(Documento ficticio para fines de evaluación del semillero)
+Base de conocimiento del Agente de Gestión de Incidentes
+
+1. DEFINICIÓN
+Un incidente es cualquier interrupción no planificada o degradación de un servicio de TI.
+
+2. CÓMO REPORTAR UN INCIDENTE
+- Incidentes generales: crear ticket en la Mesa de Servicio (PatitoDesk).
+- Incidentes críticos (P1): además del ticket, llamar de inmediato a la línea de emergencia
+  de TI disponible 24/7.
+
+3. CLASIFICACIÓN DE PRIORIDAD
+- P1 - Crítico: caída total de un sistema crítico (por ejemplo, el sistema de facturación),
+  o afectación a toda la empresa. Tiempo de respuesta: 15 minutos. Resolución objetivo: 4 horas.
+- P2 - Alto: afectación grave a un área o a varias personas. Respuesta: 1 hora. Resolución: 8 horas.
+- P3 - Medio: afectación a una persona con alternativa de trabajo. Respuesta: 4 horas. Resolución: 2 días.
+- P4 - Bajo: consultas o solicitudes menores. Respuesta: 1 día. Resolución: 5 días.
+
+4. EJEMPLO
+Una caída total del sistema de facturación se clasifica como P1 (crítico). Debe reportarse con
+ticket y llamada a la línea de emergencia; el tiempo de respuesta comprometido es de 15 minutos.
+
+5. ESCALAMIENTO
+Si un incidente P1 no se resuelve en el tiempo objetivo, se escala al líder de TI y, de ser
+necesario, al proveedor del sistema afectado.
+
+6. CIERRE
+Todo incidente se cierra documentando la causa, la solución aplicada y las acciones de prevención.
