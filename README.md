@@ -233,4 +233,14 @@ No encontré información suficiente en la base documental proporcionada.
 
 ## Más documentación
 
-- `docs/instalacion-y-uso.md`: guía completa de instalación, ejecución, uso, pruebas y problemas comunes.
+La documentación está separada en archivos pequeños dentro de `docs/`:
+
+- `docs/index.md`: índice de documentación.
+- `docs/proyecto.md`: objetivo, alcance y límites del sistema.
+- `docs/arquitectura.md`: arquitectura y flujos principales.
+- `docs/componentes.md`: qué hace cada carpeta y módulo importante.
+- `docs/flujo-rag.md`: generación de índices y flujo de respuesta documental.
+- `docs/flujo-tickets.md`: validación, confirmación y registro de tickets.
+- `docs/configuracion-y-datos.md`: variables, datos fuente y archivos generados.
+- `docs/pruebas-y-validacion.md`: pruebas automatizadas y validación manual.
+- `docs/instalacion-y-uso.md`: instalación, ejecución y problemas comunes.
