@@ -39,3 +39,4 @@ Thumbs.db
 # Editor and local tool folders
 .vscode/
 .idea/
+.atl/
