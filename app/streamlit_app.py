@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import time
 from pathlib import Path
 
 import streamlit as st
@@ -10,6 +11,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from app.agents.action_agent import confirm_ticket
+from app.monitoring import check_knowledge_bases, status_label
 from app.orchestrator.router import answer_question
 from app.schemas.ticket import TicketDraft
 
@@ -23,6 +25,10 @@ def init_session_state() -> None:
         "chat_sessions": [],
         "active_chat_id": None,
         "chat_counter": 0,
+        "last_latency": None,
+        "last_agents_count": 0,
+        "last_sources_count": 0,
+        "last_warnings_count": 0,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -157,7 +163,13 @@ def handle_question(question: str) -> None:
 
     with st.chat_message("assistant"):
         with st.spinner("Consultando agentes..."):
+            start_time = time.perf_counter()
             response = answer_question(question)
+            end_time = time.perf_counter()
+            st.session_state.last_latency = end_time - start_time
+            st.session_state.last_agents_count = len(response.agents)
+            st.session_state.last_sources_count = len(response.sources)
+            st.session_state.last_warnings_count = len(response.warnings)
 
         st.markdown(response.answer)
         st.session_state.messages.append({"role": "assistant", "content": response.answer})
@@ -186,6 +198,28 @@ def render_ticket_confirmation() -> None:
             st.error(result.message)
 
 
+def render_monitoring() -> None:
+    with st.expander("Monitoreo del sistema", expanded=False):
+        bases_tab, performance_tab = st.tabs(["Bases de conocimiento", "Última consulta"])
+
+        with bases_tab:
+            for health in check_knowledge_bases():
+                cols = st.columns([2, 1, 1, 1])
+                name = health.name.replace("Agente de ", "")
+                cols[0].caption(name)
+                cols[1].caption(f"Datos: {status_label(health.data_file_exists)}")
+                cols[2].caption(f"Índice: {status_label(health.chroma_db_ok)}")
+                cols[3].caption(f"Archivos: {health.vectorstore_file_count}")
+
+        with performance_tab:
+            latency = st.session_state.last_latency
+            col1, col2, col3, col4 = st.columns(4)
+            col1.metric("Latencia", f"{latency:.2f}s" if latency is not None else "—")
+            col2.metric("Agentes", st.session_state.last_agents_count)
+            col3.metric("Fuentes", st.session_state.last_sources_count)
+            col4.metric("Advertencias", st.session_state.last_warnings_count)
+
+
 def main() -> None:
     init_session_state()
     render_sidebar()
@@ -202,37 +236,6 @@ def main() -> None:
         handle_question(question)
 
     render_ticket_confirmation()
-    # --- Aporte de interfaz ---
-    st.sidebar.markdown("---")
-    st.sidebar.info("💡 Prototipo optimizado para la gestión de mesas de ayuda TI.")
-    # --- PANEL DE CONTROL Y MONITOREO TI (Aporte de Victor Lavayen) ---
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("### 📊 Panel de Control TI")
-
-    # Métricas del sistema en tiempo real
-    col1, col2 = st.sidebar.columns(2)
-    with col1:
-        st.metric(label="Estado RAG", value="🟢 Activo")
-    with col2:
-        st.metric(label="Latencia LLM", value="1.2s")
-
-    # Estado de las Bases Documentales Locales
-    st.sidebar.markdown("**Bases de Datos Chroma:**")
-    st.sidebar.caption("📁 Infraestructura: `Conectado` ✅")
-    st.sidebar.caption("📁 Seguridad: `Conectado` ✅")
-    st.sidebar.caption("📁 Incidentes: `Conectado` ✅")
-
-    # Acordeón de ayuda rápida para el operador
-    with st.sidebar.expander("🚀 Atajos & Guía de Tickets"):
-        st.markdown("""
-        **Requisitos para Software:**
-        * Nombre y versión
-        * Motivo de la solicitud
-        * Jefe que aprueba
-    
-        **Requisitos para Incidentes:**
-        * Sistema afectado
-        * Descripción y Prioridad
-        """)
+    render_monitoring()
 
 main()
