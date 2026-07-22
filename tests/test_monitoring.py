@@ -16,6 +16,7 @@ def test_count_files_nested() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         d = Path(tmp)
         (d / "a.txt").write_text("hello")
+        (d / ".gitkeep").write_text("")
         (d / "sub").mkdir()
         (d / "sub" / "b.txt").write_text("world")
         assert _count_files(d) == 2

@@ -209,7 +209,7 @@ def render_monitoring() -> None:
                 cols[0].caption(name)
                 cols[1].caption(f"Datos: {status_label(health.data_file_exists)}")
                 cols[2].caption(f"Índice: {status_label(health.chroma_db_ok)}")
-                cols[3].caption(f"Archivos: {health.vectorstore_file_count}")
+                cols[3].caption(f"Archivos índice: {health.vectorstore_file_count}")
 
         with performance_tab:
             latency = st.session_state.last_latency

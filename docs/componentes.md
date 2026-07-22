@@ -120,6 +120,27 @@ Define modelos Pydantic para mantener contratos claros.
 | `response.py` | `SourceChunk`, `AgentResponse`, `OrchestratorResponse` |
 | `ticket.py` | `TicketDraft`, `TicketResult`, `TicketType` |
 
+## app/monitoring.py
+
+Verifica el estado de las bases de conocimiento.
+
+Responsabilidades:
+
+- Revisar si existen los archivos de datos y los índices vectoriales.
+- Contar archivos dentro de cada directorio de vector store.
+- Validar que la base de datos Chroma (`chroma.sqlite3`) esté presente y no vacía.
+- Exponer el dataclass `KBHealth` con el resultado de cada verificación.
+
+## app/rag/prompts.py
+
+Define los prompts del sistema para agentes y orquestador.
+
+Contiene:
+
+- `RAG_AGENT_SYSTEM_PROMPT`: instrucciones para que cada agente responda usando solo su base documental.
+- `ORCHESTRATOR_SYSTEM_PROMPT`: instrucciones para clasificar la intención y decidir qué agentes ejecutar.
+- Ambos incluyen la regla de respuesta insuficiente desde `INSUFFICIENT_INFO_MESSAGE`.
+
 ## app/utils
 
 Contiene utilidades pequeñas.

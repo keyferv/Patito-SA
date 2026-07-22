@@ -4,13 +4,7 @@ Esta guía es para levantar el proyecto desde cero sin adivinar comandos.
 
 ## Carpeta correcta
 
-Todos los comandos se ejecutan desde:
-
-```text
-C:\Users\Usuario\Documents\Patito-SA
-```
-
-Si estás en otra carpeta, vas a tener errores de imports, archivos no encontrados o índices vacíos.
+Todos los comandos se ejecutan desde la raíz del proyecto (donde están `app/`, `data/`, `requirements.txt`). Si ejecutás desde otra carpeta, vas a tener errores de imports, archivos no encontrados o índices vacíos.
 
 ## Requisitos
 
@@ -23,7 +17,6 @@ Si estás en otra carpeta, vas a tener errores de imports, archivos no encontrad
 ## Opción 1: PowerShell con pip
 
 ```powershell
-cd C:\Users\Usuario\Documents\Patito-SA
 python --version
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
@@ -38,7 +31,6 @@ python -m streamlit run app/streamlit_app.py
 ## Opción 2: CMD con pip
 
 ```bat
-cd /d C:\Users\Usuario\Documents\Patito-SA
 python --version
 python -m venv .venv
 .venv\Scripts\activate.bat
@@ -61,7 +53,6 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 Crear entorno, instalar y ejecutar:
 
 ```powershell
-cd C:\Users\Usuario\Documents\Patito-SA
 uv venv --python 3.11
 .\.venv\Scripts\Activate.ps1
 uv pip install -r requirements.txt
@@ -82,7 +73,6 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 Crear entorno, instalar y ejecutar:
 
 ```bat
-cd /d C:\Users\Usuario\Documents\Patito-SA
 uv venv --python 3.11
 .venv\Scripts\activate.bat
 uv pip install -r requirements.txt
@@ -112,7 +102,6 @@ No subas `.env` a GitHub ni lo pegues en chats.
 PowerShell:
 
 ```powershell
-cd C:\Users\Usuario\Documents\Patito-SA
 .\.venv\Scripts\Activate.ps1
 python -m streamlit run app/streamlit_app.py
 ```
@@ -120,7 +109,6 @@ python -m streamlit run app/streamlit_app.py
 CMD:
 
 ```bat
-cd /d C:\Users\Usuario\Documents\Patito-SA
 .venv\Scripts\activate.bat
 python -m streamlit run app/streamlit_app.py
 ```
@@ -128,7 +116,6 @@ python -m streamlit run app/streamlit_app.py
 uv sin activar manualmente:
 
 ```powershell
-cd C:\Users\Usuario\Documents\Patito-SA
 uv run streamlit run app/streamlit_app.py
 ```
 
@@ -190,10 +177,9 @@ uv run pytest -q
 
 Causa probable: ejecutaste el comando desde una carpeta incorrecta.
 
-Solución:
+Solución: asegurate de estar en la raíz del proyecto y ejecutar:
 
 ```powershell
-cd C:\Users\Usuario\Documents\Patito-SA
 python -m streamlit run app/streamlit_app.py
 ```
 

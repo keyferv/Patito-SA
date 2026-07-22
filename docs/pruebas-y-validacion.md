@@ -20,8 +20,10 @@ uv run pytest -q
 
 | Archivo | Qué valida |
 |---------|------------|
+| `tests/conftest.py` | Agrega la raíz del proyecto a `sys.path` para que los imports funcionen en cualquier entorno. |
 | `tests/test_router.py` | Enrutamiento de preguntas, respuesta fuera de alcance y normalización de contenido del LLM. |
 | `tests/test_ticket_validation.py` | Validación de tickets incompletos, completos, confirmación y duplicados. |
+| `tests/test_monitoring.py` | Conteo de archivos en directorios, etiquetas de estado, y verificación de salud de bases de conocimiento configuradas. |
 
 ## Validación manual recomendada
 

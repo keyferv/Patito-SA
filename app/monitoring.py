@@ -54,7 +54,7 @@ def check_knowledge_bases(
 
 def _count_files(directory: Path) -> int:
     try:
-        return sum(1 for _ in directory.rglob("*") if _.is_file())
+        return sum(1 for path in directory.rglob("*") if path.is_file() and path.name != ".gitkeep")
     except OSError:
         return 0
 
