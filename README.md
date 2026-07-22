@@ -9,6 +9,7 @@ Prototipo académico de mesa de ayuda con IA para Patito S.A. Usa Streamlit, Lan
 - Enruta cada pregunta al agente correcto.
 - Permite preparar tickets de software o incidentes.
 - Guarda tickets confirmados en `outputs/registro_tickets.txt`.
+- Permite analizar imágenes (capturas de pantalla, fotos) relacionadas con soporte TI mediante Gemini multimodal.
 
 ## Requisitos
 
@@ -171,6 +172,8 @@ uv run pytest -q
 5. Confirmá el ticket solo cuando la app muestre que los datos están completos.
 
 Ejemplos listos para probar: `examples/preguntas_prueba.md`.
+
+También podés usar el expander "Análisis multimodal de imágenes" al pie de la página para subir una captura de pantalla o foto y recibir un análisis conciso de Gemini.
 
 ## Datos requeridos para tickets
 

@@ -21,6 +21,7 @@ El proyecto reduce ese trabajo mediante:
 | Seguridad y accesos | Contraseñas, VPN, credenciales, permisos, MFA y acceso a información sensible. |
 | Incidentes y SLA | Fallas, prioridades, escalamiento y tiempos de atención. |
 | Tickets | Borradores de tickets de software o incidentes con confirmación antes de guardar. |
+| Multimodal | Análisis de imágenes (capturas de pantalla, fotos) relacionados con casos de soporte TI. El análisis multimodal es un flujo separado en Streamlit; no pasa por el orquestador de texto. |
 
 ## Fuera de alcance
 

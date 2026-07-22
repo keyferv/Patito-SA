@@ -126,6 +126,7 @@ uv run streamlit run app/streamlit_app.py
 3. Revisá las fuentes mostradas por la app.
 4. Para tickets, escribí la solicitud con todos los datos requeridos.
 5. Confirmá solo cuando la app indique que el ticket está completo.
+6. Para el demo multimodal, usá el expander "Análisis multimodal de imágenes" al pie de la página. Subí una imagen PNG, JPG o JPEG y presioná "Analizar imagen".
 
 ## Preguntas de prueba
 
