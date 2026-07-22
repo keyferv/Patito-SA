@@ -8,10 +8,12 @@ La arquitectura está organizada en capas simples: interfaz, orquestación, agen
 flowchart TD
     U[Usuario] --> UI[Streamlit]
     UI --> O[Orquestador]
+    UI --> M[Análisis multimodal]
     O --> IA[Agente Infraestructura]
     O --> SA[Agente Seguridad]
     O --> GA[Agente Incidentes]
     O --> TA[Agente Acción]
+    M --> GeminiV[Gemini multimodal]
     IA --> IR[Retriever infraestructura]
     SA --> SR[Retriever seguridad]
     GA --> GR[Retriever incidentes]
@@ -29,6 +31,7 @@ flowchart TD
 | Orquestación | Detecta intención y decide qué agentes ejecutar. | `app/orchestrator/router.py` |
 | Agentes RAG | Consultan documentos por dominio y generan respuestas. | `app/agents/base_rag_agent.py`, `app/agents/*_agent.py` |
 | Acción | Valida datos y prepara o registra tickets. | `app/agents/action_agent.py` |
+| Multimodal | Analiza imágenes cargadas desde la interfaz usando Gemini. | `app/multimodal.py` |
 | RAG | Crea embeddings, carga Chroma y expone retrievers. | `app/rag/build_indexes.py`, `app/rag/vectorstores.py` |
 | Modelos de datos | Define respuestas, fuentes y tickets. | `app/schemas/*.py` |
 | Configuración | Centraliza rutas, variables y bases de conocimiento. | `app/config.py` |
@@ -76,6 +79,25 @@ sequenceDiagram
     UI->>Action: confirm_ticket(borrador)
     Action->>File: Escribe en outputs/registro_tickets.txt
 ```
+
+## Flujo multimodal de imagen
+
+```mermaid
+sequenceDiagram
+    participant User as Usuario
+    participant UI as Streamlit
+    participant Multi as Módulo multimodal
+    participant Gemini as Gemini multimodal
+
+    User->>UI: Sube imagen PNG, JPG o JPEG
+    UI->>Multi: analizar_imagen(bytes, mime_type)
+    Multi->>Gemini: Envía prompt e imagen codificada
+    Gemini-->>Multi: Análisis textual
+    Multi-->>UI: Texto limpio para mostrar
+    UI-->>User: Muestra descripción de la imagen
+```
+
+Este flujo multimodal es independiente del orquestador de texto. Se mantiene separado para que la demo de imagen sea simple y explícita; una mejora futura sería integrarlo al enrutamiento principal.
 
 ## Por qué no hay una sola base vectorial
 
