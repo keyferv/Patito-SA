@@ -39,6 +39,7 @@ Responsabilidades:
 - Enviar preguntas al orquestador.
 - Mostrar respuesta, agentes participantes y fuentes.
 - Guardar un ticket pendiente hasta que el usuario confirme.
+- Incluir un expander de análisis multimodal de imágenes con vista previa y llamado a Gemini.
 
 ## app/orchestrator/router.py
 
@@ -87,6 +88,20 @@ Responsabilidades:
 - Registrar el ticket confirmado en archivo local.
 - Exponer una `StructuredTool` opcional para integración LangChain.
 
+## app/multimodal.py
+
+Permite análisis de imágenes con Gemini.
+
+Responsabilidades:
+
+- Recibir bytes de imagen, tipo MIME e instrucción opcional.
+- Codificar la imagen como data URL base64.
+- Construir mensajes multimodales para Gemini.
+- Llamar a `ChatGoogleGenerativeAI` con temperatura cero.
+- Devolver un análisis textual conciso de la imagen.
+
+Este módulo opera como un flujo independiente en Streamlit. No pasa por el orquestador de texto ni por los agentes RAG. Es una limitación actual aceptada; a futuro podría integrarse como un agente multimodal dentro de la cadena de enrutamiento.
+
 ## app/rag/build_indexes.py
 
 Genera los índices vectoriales.
@@ -119,6 +134,27 @@ Define modelos Pydantic para mantener contratos claros.
 | `request.py` | `UserRequest` |
 | `response.py` | `SourceChunk`, `AgentResponse`, `OrchestratorResponse` |
 | `ticket.py` | `TicketDraft`, `TicketResult`, `TicketType` |
+
+## app/monitoring.py
+
+Verifica el estado de las bases de conocimiento.
+
+Responsabilidades:
+
+- Revisar si existen los archivos de datos y los índices vectoriales.
+- Contar archivos dentro de cada directorio de vector store.
+- Validar que la base de datos Chroma (`chroma.sqlite3`) esté presente y no vacía.
+- Exponer el dataclass `KBHealth` con el resultado de cada verificación.
+
+## app/rag/prompts.py
+
+Define los prompts del sistema para agentes y orquestador.
+
+Contiene:
+
+- `RAG_AGENT_SYSTEM_PROMPT`: instrucciones para que cada agente responda usando solo su base documental.
+- `ORCHESTRATOR_SYSTEM_PROMPT`: instrucciones para clasificar la intención y decidir qué agentes ejecutar.
+- Ambos incluyen la regla de respuesta insuficiente desde `INSUFFICIENT_INFO_MESSAGE`.
 
 ## app/utils
 

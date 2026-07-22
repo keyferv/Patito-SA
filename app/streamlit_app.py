@@ -12,6 +12,7 @@ if str(ROOT_DIR) not in sys.path:
 
 from app.agents.action_agent import confirm_ticket
 from app.monitoring import check_knowledge_bases, status_label
+from app.multimodal import analizar_imagen
 from app.orchestrator.router import answer_question
 from app.schemas.ticket import TicketDraft
 
@@ -198,6 +199,28 @@ def render_ticket_confirmation() -> None:
             st.error(result.message)
 
 
+def render_analisis_multimodal() -> None:
+    with st.expander("Análisis multimodal de imágenes", expanded=False):
+        st.caption("Sube una captura de pantalla o foto relacionada con un caso de soporte TI.")
+
+        uploaded = st.file_uploader(
+            "Seleccionar imagen",
+            type=["png", "jpg", "jpeg"],
+            label_visibility="collapsed",
+        )
+
+        if uploaded is not None:
+            st.image(uploaded, caption="Vista previa", use_container_width=True)
+
+            if st.button("Analizar imagen", use_container_width=True):
+                with st.spinner("Analizando imagen..."):
+                    result = analizar_imagen(
+                        image_bytes=uploaded.getvalue(),
+                        mime_type=uploaded.type,
+                    )
+                st.info(result)
+
+
 def render_monitoring() -> None:
     with st.expander("Monitoreo del sistema", expanded=False):
         bases_tab, performance_tab = st.tabs(["Bases de conocimiento", "Última consulta"])
@@ -209,7 +232,7 @@ def render_monitoring() -> None:
                 cols[0].caption(name)
                 cols[1].caption(f"Datos: {status_label(health.data_file_exists)}")
                 cols[2].caption(f"Índice: {status_label(health.chroma_db_ok)}")
-                cols[3].caption(f"Archivos: {health.vectorstore_file_count}")
+                cols[3].caption(f"Archivos índice: {health.vectorstore_file_count}")
 
         with performance_tab:
             latency = st.session_state.last_latency
@@ -236,6 +259,7 @@ def main() -> None:
         handle_question(question)
 
     render_ticket_confirmation()
+    render_analisis_multimodal()
     render_monitoring()
 
 main()

@@ -9,6 +9,7 @@ Prototipo académico de mesa de ayuda con IA para Patito S.A. Usa Streamlit, Lan
 - Enruta cada pregunta al agente correcto.
 - Permite preparar tickets de software o incidentes.
 - Guarda tickets confirmados en `outputs/registro_tickets.txt`.
+- Permite analizar imágenes (capturas de pantalla, fotos) relacionadas con soporte TI mediante Gemini multimodal.
 
 ## Requisitos
 
@@ -172,6 +173,8 @@ uv run pytest -q
 
 Ejemplos listos para probar: `examples/preguntas_prueba.md`.
 
+También podés usar el expander "Análisis multimodal de imágenes" al pie de la página para subir una captura de pantalla o foto y recibir un análisis conciso de Gemini.
+
 ## Datos requeridos para tickets
 
 Solicitud de software:
@@ -191,10 +194,26 @@ Si falta información, la app no registra el ticket.
 
 ## Estructura del proyecto
 
+Las carpetas principales tienen documentación asociada para no duplicar explicación en el README:
+
+| Carpeta o archivo | Rol | Documentación relacionada |
+|-------------------|-----|---------------------------|
+| [`app/`](app/) | Código principal de la aplicación. | [`docs/componentes.md`](docs/componentes.md) |
+| [`data/`](data/) | Documentos base que alimentan el RAG. | [`docs/configuracion-y-datos.md`](docs/configuracion-y-datos.md) |
+| [`docs/`](docs/) | Documentación técnica y operativa. | [`docs/index.md`](docs/index.md) |
+| [`examples/`](examples/) | Preguntas de prueba listas para usar. | [`examples/preguntas_prueba.md`](examples/preguntas_prueba.md) |
+| [`outputs/`](outputs/) | Tickets registrados localmente. | [`docs/flujo-tickets.md`](docs/flujo-tickets.md) |
+| [`tests/`](tests/) | Pruebas automatizadas. | [`docs/pruebas-y-validacion.md`](docs/pruebas-y-validacion.md) |
+| [`vectorstores/`](vectorstores/) | Índices Chroma generados localmente. | [`docs/flujo-rag.md`](docs/flujo-rag.md) |
+| [`.env.example`](.env.example) | Plantilla de configuración. | [`docs/configuracion-y-datos.md`](docs/configuracion-y-datos.md) |
+| [`requirements.txt`](requirements.txt) | Dependencias Python. | [`docs/instalacion-y-uso.md`](docs/instalacion-y-uso.md) |
+
+Vista rápida:
+
 ```text
 app/                    Código principal
 data/                   Documentos base para RAG
-docs/                   Documentación de instalación y uso
+docs/                   Documentación técnica y operativa
 examples/               Preguntas de prueba
 outputs/                Tickets registrados localmente
 tests/                  Pruebas automatizadas
@@ -233,14 +252,16 @@ No encontré información suficiente en la base documental proporcionada.
 
 ## Más documentación
 
-La documentación está separada en archivos pequeños dentro de `docs/`:
+La documentación está separada en archivos pequeños dentro de [`docs/`](docs/). Usá esta tabla para ir directo al tema que necesitás:
 
-- `docs/index.md`: índice de documentación.
-- `docs/proyecto.md`: objetivo, alcance y límites del sistema.
-- `docs/arquitectura.md`: arquitectura y flujos principales.
-- `docs/componentes.md`: qué hace cada carpeta y módulo importante.
-- `docs/flujo-rag.md`: generación de índices y flujo de respuesta documental.
-- `docs/flujo-tickets.md`: validación, confirmación y registro de tickets.
-- `docs/configuracion-y-datos.md`: variables, datos fuente y archivos generados.
-- `docs/pruebas-y-validacion.md`: pruebas automatizadas y validación manual.
-- `docs/instalacion-y-uso.md`: instalación, ejecución y problemas comunes.
+| Necesitás revisar | Ir a |
+|-------------------|------|
+| Índice completo de documentación | [`docs/index.md`](docs/index.md) |
+| Objetivo, alcance y límites del sistema | [`docs/proyecto.md`](docs/proyecto.md) |
+| Arquitectura y flujos principales | [`docs/arquitectura.md`](docs/arquitectura.md) |
+| Qué hace cada carpeta y módulo importante | [`docs/componentes.md`](docs/componentes.md) |
+| Generación de índices y flujo de respuesta documental | [`docs/flujo-rag.md`](docs/flujo-rag.md) |
+| Validación, confirmación y registro de tickets | [`docs/flujo-tickets.md`](docs/flujo-tickets.md) |
+| Variables, datos fuente y archivos generados | [`docs/configuracion-y-datos.md`](docs/configuracion-y-datos.md) |
+| Pruebas automatizadas y validación manual | [`docs/pruebas-y-validacion.md`](docs/pruebas-y-validacion.md) |
+| Instalación, ejecución y problemas comunes | [`docs/instalacion-y-uso.md`](docs/instalacion-y-uso.md) |

@@ -39,15 +39,9 @@ Cuando un usuario pregunta:
 5. Gemini responde usando ese contexto.
 6. La interfaz muestra respuesta y fuentes.
 
-## Parámetros importantes
+## Parámetros
 
-| Variable | Uso |
-|----------|-----|
-| `GEMINI_EMBEDDING_MODEL` | Modelo usado para crear embeddings. |
-| `GEMINI_LLM_MODEL` | Modelo usado para generar respuestas. |
-| `CHUNK_SIZE` | Tamaño máximo aproximado de cada chunk. |
-| `CHUNK_OVERLAP` | Solapamiento entre chunks. |
-| `RETRIEVER_K` | Cantidad de chunks recuperados por consulta. |
+Las variables que afectan el comportamiento RAG (`CHUNK_SIZE`, `CHUNK_OVERLAP`, `RETRIEVER_K`, modelos de embeddings y LLM) están documentadas en [configuracion-y-datos.md](configuracion-y-datos.md).
 
 ## Cuándo regenerar índices
 
