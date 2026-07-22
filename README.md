@@ -227,6 +227,8 @@ requirements.txt        Dependencias Python
 ```mermaid
 flowchart TD
     U[Usuario en Streamlit] --> O[Orquestador]
+    U --> M[Análisis multimodal]
+    M --> GM[Gemini multimodal]
     O --> I[Agente Infraestructura]
     O --> S[Agente Seguridad]
     O --> G[Agente Incidentes]
