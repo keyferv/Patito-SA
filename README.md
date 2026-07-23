@@ -2,6 +2,8 @@
 
 Prototipo académico de mesa de ayuda con IA para Patito S.A. Usa Streamlit, LangChain, Gemini, Chroma y agentes especializados para responder desde documentos internos y registrar tickets locales.
 
+Video de demostración: https://drive.google.com/file/d/12jBhoPxNRtnlpBpNz9iO9UYI4Skq59e9/view?usp=sharing
+
 ## Qué hace
 
 - Responde preguntas sobre servicios TI, seguridad y gestión de incidentes.
